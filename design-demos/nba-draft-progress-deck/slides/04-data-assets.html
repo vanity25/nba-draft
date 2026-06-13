@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>04 · Data Assets</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+  .data-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 52px;
+    margin-top: 38px;
+  }
+  .stat-grid { height: 612px; }
+  .table { height: 612px; }
+  .tr { grid-template-columns: 230px 1fr 180px; }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="kicker">04 / Data Inventory</div>
+  <h1 class="title-md">数据资产已经从“资料”变成<br><span class="green">可读的结构化输入</span></h1>
+  <div class="data-grid">
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="num">104<span class="unit">rows</span></div>
+        <div class="label">2026 prospects</div>
+        <div class="desc">候选新秀基础信息</div>
+      </div>
+      <div class="stat">
+        <div class="num">30<span class="unit">picks</span></div>
+        <div class="label">2026 order</div>
+        <div class="desc">首轮球队顺序与来源说明</div>
+      </div>
+      <div class="stat">
+        <div class="num">85<span class="unit">rows</span></div>
+        <div class="label">2025 prospects</div>
+        <div class="desc">回测所需候选池</div>
+      </div>
+      <div class="stat">
+        <div class="num">59<span class="unit">labels</span></div>
+        <div class="label">2025 results</div>
+        <div class="desc">官方最终结果标签</div>
+      </div>
+    </div>
+    <div class="table">
+      <div class="tr">
+        <div class="th">File</div><div class="th">Role</div><div class="th">Status</div>
+      </div>
+      <div class="tr">
+        <div class="td"><strong>2026 prospects</strong></div><div class="td">建立今年候选球员池，字段包含位置、年龄、学校、身高体重、国家。</div><div class="td"><strong>Done</strong></div>
+      </div>
+      <div class="tr">
+        <div class="td"><strong>2026 order</strong></div><div class="td">确定 1-30 顺位的球队序列，并保留 from/via 交易来源。</div><div class="td"><strong>Done</strong></div>
+      </div>
+      <div class="tr">
+        <div class="td"><strong>2025 prospects</strong></div><div class="td">作为 2025 年选秀前可见的候选人参考。</div><div class="td"><strong>Done</strong></div>
+      </div>
+      <div class="tr">
+        <div class="td"><strong>2025 first round</strong></div><div class="td">用于对照首轮真实命中与球队归属偏差。</div><div class="td"><strong>Done</strong></div>
+      </div>
+      <div class="tr">
+        <div class="td"><strong>2025 results</strong></div><div class="td">覆盖 1-59 顺位，后续可扩展到两轮表现分析。</div><div class="td"><strong>Done</strong></div>
+      </div>
+      <div class="tr">
+        <div class="td"><strong>Team needs</strong></div><div class="td">球队需求、风险偏好、历史偏好仍待建表。</div><div class="td"><strong>Next</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="tagline"><span>Data/</span><span class="footer-mark">Input Tables Are Ready</span></div>
+</section>
+</body>
+</html>

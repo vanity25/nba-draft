@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>10 · Close</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+  .close {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 70px;
+    height: 100%;
+    align-items: center;
+  }
+  .final-board {
+    border: 1px solid var(--line-strong);
+    background: rgba(16,22,28,.78);
+  }
+  .final-row {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    min-height: 150px;
+    border-top: 1px solid var(--line);
+  }
+  .final-row:first-child { border-top: 0; }
+  .final-row .mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 34px;
+    font-weight: 900;
+    border-right: 1px solid var(--line);
+  }
+  .final-row .copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px 36px;
+  }
+  .final-row h3 {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+  .final-row p {
+    color: var(--muted);
+    font-size: 22px;
+    line-height: 1.4;
+  }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="close">
+    <div>
+      <div class="kicker">10 / Buzzer Beater</div>
+      <h1 class="title-xl">当前阶段：<br><span class="green">准备完成，模型待跑</span></h1>
+      <p class="lead">这个目录已经把黑客松的赛题拆解、基础数据、历史标签、准备脚本和三层预测路线放到同一处。下一次演示应该从“我做了哪些准备”推进到“baseline 给出第一版 30 顺位预测”。</p>
+    </div>
+    <div class="final-board">
+      <div class="final-row">
+        <div class="mark">DONE</div>
+        <div class="copy"><h3>项目说明和赛题拆解</h3><p>README 已能让队友快速接手。</p></div>
+      </div>
+      <div class="final-row">
+        <div class="mark">DONE</div>
+        <div class="copy"><h3>数据资产和回测标签</h3><p>Data 目录已经有今年输入和去年标签。</p></div>
+      </div>
+      <div class="final-row">
+        <div class="mark">DONE</div>
+        <div class="copy"><h3>研究材料和工具脚本</h3><p>Preparation 保存了对话、截图、脚本和样例输出。</p></div>
+      </div>
+      <div class="final-row">
+        <div class="mark">NEXT</div>
+        <div class="copy"><h3>baseline + Web Agent</h3><p>跑通预测表，再做可交互展示和路演逻辑。</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="tagline"><span>End</span><span class="footer-mark">Ready For Build Sprint</span></div>
+</section>
+</body>
+</html>

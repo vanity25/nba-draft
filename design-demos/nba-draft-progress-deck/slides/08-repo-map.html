@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>08 · Repository Map</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+  .map-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 52px;
+    margin-top: 46px;
+  }
+  .code-card { height: 612px; font-size: 23px; }
+  .legend {
+    display: grid;
+    gap: 26px;
+  }
+  .legend-block {
+    padding: 34px 38px;
+    border: 1px solid var(--line);
+    background: rgba(16,22,28,.76);
+  }
+  .legend-block h3 {
+    font-size: 34px;
+    line-height: 1.15;
+  }
+  .legend-block p {
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 23px;
+    line-height: 1.45;
+  }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="kicker">08 / Repo Map</div>
+  <h1 class="title-md">当前目录已经形成<br><span class="green">清晰的交付物地图</span></h1>
+  <div class="map-grid">
+    <div class="code-card">AWS_Hackson/
+  README.md
+  Todo.md
+
+  Data/
+    nba_2026_draft_prospects.csv
+    nba_2026_draft_first_round_order.md
+    Data_2025/
+      nba_2025_draft_prospects.csv
+      nba_2025_draft_first_round_order.csv
+      nba_2025_draft_results.csv
+
+  Preparation/
+    ds对话.pdf
+    read_csv_head.py
+    nba_height_top20.py
+    nba_tallest_players_2025_26.csv
+    截图/*.png
+
+  design-demos/
+    nba-draft-progress-deck/
+      index.html
+      slides/*.html</div>
+    <div class="legend">
+      <div class="legend-block">
+        <h3><span class="green">README</span> 是项目对外说明</h3>
+        <p>让评委和队友快速理解赛题、目标、评分、数据源、技术路线和关键时间点。</p>
+      </div>
+      <div class="legend-block">
+        <h3><span class="green">Data</span> 是模型输入和回测标签</h3>
+        <p>今年输入 + 去年标签的组合，支撑第一版 baseline 和后续误差复盘。</p>
+      </div>
+      <div class="legend-block">
+        <h3><span class="green">Preparation</span> 是研究与工具沉淀</h3>
+        <p>保留对话、截图、脚本和样例输出，避免赛前信息散落在聊天窗口里。</p>
+      </div>
+      <div class="legend-block">
+        <h3><span class="green">Todo</span> 是后续工程拆解</h3>
+        <p>把宏观想法变成数据表、脚本、模型、Web Agent 的下一步执行列表。</p>
+      </div>
+    </div>
+  </div>
+  <div class="tagline"><span>Repository Structure</span><span class="footer-mark">Readable By Humans And AI Scorers</span></div>
+</section>
+</body>
+</html>

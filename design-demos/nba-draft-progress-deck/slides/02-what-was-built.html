@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>02 · What Was Built</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+  .content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 64px;
+    height: 780px;
+    align-items: end;
+  }
+  .claim {
+    padding-bottom: 54px;
+  }
+  .build-list {
+    padding: 28px 46px;
+    align-self: stretch;
+  }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="kicker">02 / Box Score</div>
+  <div class="content">
+    <div class="claim">
+      <h1 class="title-lg">这一阶段主要完成了<br><span class="green">项目底座</span></h1>
+      <p class="lead">当前目录不是最终预测系统，而是黑客松前的可执行准备包：先把题目、数据、脚本、架构和里程碑落地，保证后续模型开发有清晰输入。</p>
+      <div class="note" style="margin-top:42px;">没有虚构命中率、没有伪造预测结果。仓库当前阶段明确写在 README：数据准备与方案设计。</div>
+    </div>
+    <div class="board build-list">
+      <div class="list">
+        <div class="row">
+          <div class="idx">01</div>
+          <div><h3>搭好项目说明</h3><p>README 已覆盖赛题目标、评分维度、提交物、时间节点、分工方向和后续计划。</p></div>
+        </div>
+        <div class="row">
+          <div class="idx">02</div>
+          <div><h3>整理 2026 预测输入</h3><p>候选新秀基础信息与第一轮顺位表已经进入 Data 目录。</p></div>
+        </div>
+        <div class="row">
+          <div class="idx">03</div>
+          <div><h3>补 2025 回测基准</h3><p>2025 prospects、首轮结果和全量官方结果可作为历史标签。</p></div>
+        </div>
+        <div class="row">
+          <div class="idx">04</div>
+          <div><h3>写准备脚本</h3><p>CSV 预览脚本和 NBA 身高数据抓取脚本已经可复用。</p></div>
+        </div>
+        <div class="row">
+          <div class="idx">05</div>
+          <div><h3>沉淀预测框架</h3><p>Todo 把 DeepSeek/PDF 对话整理成三层预测架构和具体数据表清单。</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tagline"><span>Done So Far</span><span class="footer-mark">Data · Scripts · Framework</span></div>
+</section>
+</body>
+</html>

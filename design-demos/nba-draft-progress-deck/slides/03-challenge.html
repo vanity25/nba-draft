@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>03 · Challenge</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+  .challenge-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: 52px;
+    margin-top: 42px;
+  }
+  .screen { height: 470px; }
+  .score-note {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--line);
+    margin-top: 28px;
+  }
+  .score-note > div {
+    padding: 32px;
+    border-left: 1px solid var(--line);
+    background: rgba(16,22,28,.74);
+  }
+  .score-note > div:first-child { border-left: 0; }
+  .score-note .num {
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 70px;
+    line-height: 0.9;
+    font-weight: 900;
+  }
+  .score-note h3 {
+    margin-top: 28px;
+    font-size: 28px;
+    line-height: 1.2;
+  }
+  .score-note p {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 21px;
+    line-height: 1.45;
+  }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="kicker">03 / The Game</div>
+  <h1 class="title-md">先把赛题拆成<br><span class="green">能执行的评分任务</span></h1>
+  <div class="challenge-grid">
+    <div>
+      <p class="lead" style="margin-top:0;">比赛不是只交一张名单。README 已经把任务拆成三条线：可交互 Web Agent、可被评分工具拉取的 GitHub 仓库、30 支球队完整首轮预测和里程碑事件答案。</p>
+      <div class="score-note">
+        <div>
+          <div class="num">30%</div>
+          <h3>代码出手质量</h3>
+          <p>仓库结构、代码可读性、自动化评分可拉取。</p>
+        </div>
+        <div>
+          <div class="num">30%</div>
+          <h3>主场路演</h3>
+          <p>6 分钟演示界面，同时讲清分析逻辑。</p>
+        </div>
+        <div>
+          <div class="num">40%</div>
+          <h3>命中率</h3>
+          <p>首轮 30 顺位预测和关键事件预测。</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="screen">
+        <img src="../../../Preparation/截图/屏幕截图 2026-06-12 225645.png" alt="赛题评分维度截图">
+      </div>
+      <p class="caption">Local reference screenshot · Preparation/截图</p>
+    </div>
+  </div>
+  <div class="tagline"><span>Challenge Understanding</span><span class="footer-mark">Scoreboard First</span></div>
+</section>
+</body>
+</html>

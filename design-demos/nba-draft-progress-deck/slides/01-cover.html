@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>01 · Cover</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+  .cover-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 0.95fr;
+    gap: 70px;
+    height: 100%;
+    align-items: center;
+  }
+  .scoreboard {
+    border: 1px solid var(--line-strong);
+    background: rgba(16, 22, 28, 0.78);
+  }
+  .score-row {
+    display: grid;
+    grid-template-columns: 210px 1fr;
+    min-height: 196px;
+    border-top: 1px solid var(--line);
+  }
+  .score-row:first-child { border-top: 0; }
+  .score-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 80px;
+    font-weight: 900;
+  }
+  .score-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 0 54px;
+    border-left: 1px solid var(--line);
+  }
+  .score-copy .mini { color: var(--faint); }
+  .score-copy h3 {
+    font-size: 31px;
+    line-height: 1.22;
+    font-weight: 900;
+  }
+  .score-copy p {
+    color: var(--muted);
+    font-size: 23px;
+    line-height: 1.42;
+  }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="cover-grid">
+    <div>
+      <div class="kicker">01 / Tip-Off</div>
+      <h1 class="title-xl">NBA Draft <span class="green">2026</span><br>预测项目</h1>
+      <p class="lead">基于当前目录的阶段性成果汇报：我已经把赛题理解、数据资产、准备脚本和预测架构整理成一个可以继续冲刺的项目骨架。</p>
+      <div class="split-rule"></div>
+      <p class="lead" style="margin-top:0; font-size:26px;">Winds · Dennis · Marcos / 上海亚马逊云科技峰会黑客松 / 2026-06-13</p>
+    </div>
+    <div class="scoreboard">
+      <div class="score-row">
+        <div class="score-num">104</div>
+        <div class="score-copy">
+          <p class="mini">2026 Prospect Pool</p>
+          <h3>候选新秀基础表已整理</h3>
+          <p>姓名、位置、年龄、学校/俱乐部、身高、体重、状态、国家。</p>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-num">30</div>
+        <div class="score-copy">
+          <p class="mini">First-Round Order</p>
+          <h3>首轮 1-30 顺位球队已落表</h3>
+          <p>包含转让来源说明，支撑后续球队需求和交易扰动分析。</p>
+        </div>
+      </div>
+      <div class="score-row">
+        <div class="score-num">59</div>
+        <div class="score-copy">
+          <p class="mini">2025 Labels</p>
+          <h3>上一年真实结果可做回测标签</h3>
+          <p>2025 最终结果覆盖 59 个官方顺位，用来验证 baseline。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tagline"><span>Repository Review</span><span class="footer-mark">HTML Deck</span></div>
+</section>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>06 · Architecture</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+  .arch {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 58px;
+    border: 1px solid var(--line);
+  }
+  .layer {
+    min-height: 610px;
+    padding: 46px 42px;
+    border-left: 1px solid var(--line);
+    background: rgba(16,22,28,.76);
+  }
+  .layer:first-child { border-left: 0; }
+  .layer.emphasis { background: linear-gradient(180deg, rgba(156,255,37,.13), rgba(16,22,28,.78)); }
+  .layer .idx {
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 900;
+  }
+  .layer h3 {
+    margin-top: 72px;
+    font-size: 43px;
+    line-height: 1.08;
+    font-weight: 900;
+  }
+  .layer p {
+    margin-top: 24px;
+    color: var(--muted);
+    font-size: 24px;
+    line-height: 1.48;
+  }
+  .checks {
+    margin-top: 42px;
+    display: grid;
+    gap: 16px;
+  }
+  .checks div {
+    border-top: 1px solid var(--line);
+    padding-top: 15px;
+    color: var(--text);
+    font-size: 22px;
+    line-height: 1.32;
+    font-weight: 750;
+  }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="kicker">06 / System Design</div>
+  <h1 class="title-md">Todo 已经把预测思路拆成<br><span class="green">三层架构</span></h1>
+  <div class="arch">
+    <div class="layer">
+      <div class="idx">LAYER 01</div>
+      <h3>基础信息层</h3>
+      <p>不依赖新闻舆论，先把候选人、顺位、球队需求和结构化标签做成 baseline。</p>
+      <div class="checks">
+        <div>球员池与顺位表</div>
+        <div>talent_score + need_fit_score</div>
+        <div>2025 数据回测</div>
+      </div>
+    </div>
+    <div class="layer emphasis">
+      <div class="idx">LAYER 02</div>
+      <h3>动态分析层</h3>
+      <p>把 mock draft、big board、试训、承诺、伤病、交易传闻转成可计算信号。</p>
+      <div class="checks">
+        <div>mock_drafts_2026.csv</div>
+        <div>intel_signals_2026.csv</div>
+        <div>来源权重与时间戳</div>
+      </div>
+    </div>
+    <div class="layer">
+      <div class="idx">LAYER 03</div>
+      <h3>整合输出层</h3>
+      <p>模拟 BPA、Fit、风险偏好、顺次挑选和联动调整，输出最终榜单。</p>
+      <div class="checks">
+        <div>30 顺位链式模拟</div>
+        <div>备选方案与置信度</div>
+        <div>baseline / 共识 / 交易扰动</div>
+      </div>
+    </div>
+  </div>
+  <div class="tagline"><span>Todo.md</span><span class="footer-mark">From Research Notes To Build Plan</span></div>
+</section>
+</body>
+</html>

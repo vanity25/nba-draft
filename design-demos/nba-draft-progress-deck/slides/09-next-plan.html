@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>09 · Next Plan</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+  .timeline { position: relative; z-index: 1; margin-top: 76px; }
+  .bottom-note {
+    position: relative;
+    z-index: 1;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 36px;
+    align-items: center;
+  }
+  .bottom-note .big-number { font-size: 128px; }
+  .bottom-note p {
+    color: var(--muted);
+    font-size: 27px;
+    line-height: 1.5;
+  }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="kicker">09 / Next Possession</div>
+  <h1 class="title-md">后续冲刺重点：<br><span class="green">先闭环 baseline，再叠情报层</span></h1>
+  <div class="timeline">
+    <div class="time-block">
+      <div class="date">06.15-06.16</div>
+      <h3>补历史数据</h3>
+      <p>优先补 2023、2024、2025 prospects / order / results，为回测提供更多样本。</p>
+    </div>
+    <div class="time-block">
+      <div class="date">06.17-06.18</div>
+      <h3>建基础评分</h3>
+      <p>生成球员标签、球队需求表、talent_score 和 need_fit_score。</p>
+    </div>
+    <div class="time-block">
+      <div class="date">06.19</div>
+      <h3>加入 LLM judge</h3>
+      <p>用 LLM 辅助解释候选人与球队匹配度，但保留结构化 baseline 作对照。</p>
+    </div>
+    <div class="time-block">
+      <div class="date">06.20</div>
+      <h3>8 小时 Dry Run</h3>
+      <p>完整模拟比赛日流程：抓数据、跑模型、看 Web Agent、提交预测。</p>
+    </div>
+    <div class="time-block">
+      <div class="date">06.21-06.22</div>
+      <h3>交付检查</h3>
+      <p>锁定分工、接口、账号、API、密钥、表单和路演脚本。</p>
+    </div>
+  </div>
+  <div class="bottom-note">
+    <div class="big-number">01</div>
+    <p>最关键的下一步不是追求复杂模型，而是先让第一层 baseline 从输入到预测表跑通，并用 2025 数据证明它能被验证。</p>
+  </div>
+  <div class="tagline"><span>Roadmap</span><span class="footer-mark">Baseline First</span></div>
+</section>
+</body>
+</html>

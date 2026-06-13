@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NBA Draft 2026 · 阶段成果汇报</title>
+<style>
+  :root {
+    --bg: #070b0f;
+    --panel: #10161c;
+    --line: #2b333b;
+    --text: #f3f6f8;
+    --muted: #a7b0bc;
+    --green: #9cff25;
+    --mono: "JetBrains Mono", "SFMono-Regular", "Cascadia Mono", Consolas, monospace;
+    --sans: "Arial Narrow", "Bahnschrift", "Noto Sans CJK SC", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .overview {
+    position: fixed;
+    inset: 0;
+    padding: 42px 48px 58px;
+    overflow: auto;
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    margin-bottom: 34px;
+  }
+  .label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--green);
+    font-family: var(--mono);
+    font-size: 15px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+  }
+  .label::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: var(--green);
+  }
+  h1 {
+    margin: 10px 0 0;
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+  .hint {
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  button {
+    appearance: none;
+    border: 1px solid rgba(156,255,37,.45);
+    background: rgba(156,255,37,.12);
+    color: var(--text);
+    padding: 13px 20px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+  button:hover { background: rgba(156,255,37,.2); }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    padding-bottom: 36px;
+  }
+  .thumb {
+    border: 1px solid var(--line);
+    background: var(--panel);
+    cursor: pointer;
+  }
+  .thumb-frame {
+    position: relative;
+    height: 0;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  .thumb iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    border: 0;
+    transform-origin: 0 0;
+    pointer-events: none;
+  }
+  .thumb-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .present {
+    position: fixed;
+    inset: 0;
+    display: none;
+    background: #000;
+  }
+  .present.active { display: block; }
+  .stage-wrap {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1920px;
+    height: 1080px;
+    transform-origin: center center;
+  }
+  .stage-wrap iframe {
+    width: 1920px;
+    height: 1080px;
+    border: 0;
+    background: #070b0f;
+  }
+  .controls {
+    position: fixed;
+    left: 24px;
+    right: 24px;
+    bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgba(243,246,248,.72);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 2px;
+    pointer-events: none;
+  }
+  .controls span {
+    background: rgba(7,11,15,.68);
+    border: 1px solid rgba(255,255,255,.12);
+    padding: 8px 12px;
+  }
+</style>
+</head>
+<body>
+  <main class="overview" id="overview">
+    <div class="topbar">
+      <div>
+        <div class="label">Deck Overview</div>
+        <h1>NBA Draft 2026 · 阶段成果汇报</h1>
+      </div>
+      <div class="hint">点击任意缩略图进入演示。方向键 / 空格翻页，ESC 回到概览。</div>
+      <button id="start">开始演示</button>
+    </div>
+    <section class="grid" id="grid"></section>
+  </main>
+
+  <section class="present" id="present">
+    <div class="stage-wrap" id="stageWrap">
+      <iframe id="stage" title="Current slide"></iframe>
+    </div>
+    <div class="controls">
+      <span>← / → · SPACE</span>
+      <span id="counter"></span>
+      <span>ESC · OVERVIEW</span>
+    </div>
+  </section>
+
+<script>
+  const slides = [
+    { file: "slides/01-cover.html", title: "Cover" },
+    { file: "slides/02-what-was-built.html", title: "What Was Built" },
+    { file: "slides/03-challenge.html", title: "Challenge" },
+    { file: "slides/04-data-assets.html", title: "Data Assets" },
+    { file: "slides/05-preparation.html", title: "Preparation" },
+    { file: "slides/06-architecture.html", title: "Architecture" },
+    { file: "slides/07-pipeline.html", title: "Prediction Pipeline" },
+    { file: "slides/08-repo-map.html", title: "Repository Map" },
+    { file: "slides/09-next-plan.html", title: "Next Plan" },
+    { file: "slides/10-close.html", title: "Close" }
+  ];
+
+  const grid = document.getElementById("grid");
+  const overview = document.getElementById("overview");
+  const present = document.getElementById("present");
+  const stage = document.getElementById("stage");
+  const stageWrap = document.getElementById("stageWrap");
+  const counter = document.getElementById("counter");
+  let current = 0;
+
+  slides.forEach((slide, index) => {
+    const card = document.createElement("article");
+    card.className = "thumb";
+    card.innerHTML = `
+      <div class="thumb-frame"><iframe src="${slide.file}" title="${slide.title}"></iframe></div>
+      <div class="thumb-meta"><span>${String(index + 1).padStart(2, "0")}</span><span>${slide.title}</span></div>
+    `;
+    card.addEventListener("click", () => show(index));
+    grid.appendChild(card);
+  });
+
+  function scaleThumbs() {
+    document.querySelectorAll(".thumb-frame").forEach(frame => {
+      const scale = frame.clientWidth / 1920;
+      const iframe = frame.querySelector("iframe");
+      iframe.style.transform = `scale(${scale})`;
+    });
+  }
+
+  function fit() {
+    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    stageWrap.style.transform = `translate(-50%, -50%) scale(${scale})`;
+  }
+
+  function show(index) {
+    current = Math.max(0, Math.min(slides.length - 1, index));
+    stage.src = slides[current].file;
+    counter.textContent = `${String(current + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+    overview.style.display = "none";
+    present.classList.add("active");
+    fit();
+  }
+
+  function backToOverview() {
+    present.classList.remove("active");
+    overview.style.display = "block";
+    stage.removeAttribute("src");
+    requestAnimationFrame(scaleThumbs);
+  }
+
+  document.getElementById("start").addEventListener("click", () => show(0));
+  window.addEventListener("resize", () => {
+    fit();
+    scaleThumbs();
+  });
+  window.addEventListener("keydown", event => {
+    if (!present.classList.contains("active")) return;
+    if (event.key === "Escape") backToOverview();
+    if (event.key === "ArrowRight" || event.key === " " || event.key === "PageDown") show(current + 1);
+    if (event.key === "ArrowLeft" || event.key === "PageUp") show(current - 1);
+  });
+  requestAnimationFrame(scaleThumbs);
+</script>
+</body>
+</html>

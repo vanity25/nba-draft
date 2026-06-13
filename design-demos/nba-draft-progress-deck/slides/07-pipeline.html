@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>07 · Pipeline</title>
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+  .pipeline { position: relative; z-index: 1; margin-top: 74px; }
+  .formula {
+    position: relative;
+    z-index: 1;
+    margin-top: 48px;
+    padding: 26px 34px;
+    border: 1px solid rgba(156,255,37,.35);
+    background: rgba(156,255,37,.1);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 28px;
+    line-height: 1.55;
+  }
+</style>
+</head>
+<body>
+<section class="slide">
+  <div class="kicker">07 / Prediction Path</div>
+  <h1 class="title-md">下一步模型可以沿着<br><span class="green">一条清晰流水线</span>推进</h1>
+  <div class="pipeline">
+    <div class="pipe-step">
+      <div class="idx">01</div>
+      <h3>读取数据</h3>
+      <p>载入 2026 prospects、首轮顺位和后续补齐的球队需求表。</p>
+    </div>
+    <div class="pipe-step">
+      <div class="idx">02</div>
+      <h3>构建特征</h3>
+      <p>位置、年龄、尺寸、学校/联赛背景、国际球员、状态标签。</p>
+    </div>
+    <div class="pipe-step">
+      <div class="idx">03</div>
+      <h3>第一版 baseline</h3>
+      <p>先用 talent_score 与 need_fit_score 形成可解释的结构化排序。</p>
+    </div>
+    <div class="pipe-step">
+      <div class="idx">04</div>
+      <h3>2025 回测</h3>
+      <p>用 2025 输入和真实结果衡量偏差，修正评分权重。</p>
+    </div>
+    <div class="pipe-step">
+      <div class="idx">05</div>
+      <h3>首轮模拟</h3>
+      <p>按顺位逐个选人，输出预测球员、备选、置信度和理由。</p>
+    </div>
+  </div>
+  <div class="formula">final_match_score = BPA × bpa_weight + Fit × fit_weight + consensus + intel + team_tendency - risk</div>
+  <div class="tagline"><span>Model Roadmap</span><span class="footer-mark">Explainable Before Complex</span></div>
+</section>
+</body>
+</html>
