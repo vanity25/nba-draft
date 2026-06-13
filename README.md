@@ -68,14 +68,18 @@
 
 候选新秀 CSV 字段包括：
 
-- `name`
-- `position`
-- `age`
-- `school_club`
-- `height`
-- `weight`
-- `status`
-- `country`
+- `name`：英文名
+- `chinese_name`：中文名
+- `position`：位置
+- `age`：年龄
+- `school_club`：学校或俱乐部
+- `height`：官方页面身高
+- `height_without_shoes`：裸足身高
+- `wingspan`：臂展
+- `standing_reach`：站立摸高
+- `weight`：体重
+- `status`：参选状态
+- `country`：国家或地区
 
 ## 数据来源
 
@@ -85,6 +89,7 @@
 | 2026 第一轮球队顺序 | NBA 官方 Draft Order：https://www.nba.com/news/2026-nba-draft-order |
 | 2025 候选新秀 | NBA 官方 Draft Prospects：https://www.nba.com/draft/2025/prospects |
 | 2025 最终选秀结果 | NBA 官方 Draft Results, Picks 1-59：https://www.nba.com/news/2025-nba-draft-order |
+| 预测市场信号 | Kalshi Basketball / Kalshi Hoops：https://kalshi.com/category/sports/basketball |
 
 说明：2025 年尼克斯的一个二轮签被 NBA 罚没，所以官方最终结果为 59 个顺位，不是 60 个。
 
@@ -97,6 +102,24 @@
 3. 为候选球员构建特征，包括年龄、身高、体重、位置、联赛背景、基础数据和球探评价。
 4. 建立预测模型，将球员天赋排序、球队需求、选秀权顺位和交易可能性结合起来。
 5. 输出第一轮 30 个顺位的预测结果，并通过 Web Agent 展示预测逻辑、情报处理流程和可视化结果。
+
+## 为什么采用三层架构
+
+NBA 选秀预测同时包含三类不同问题：稳定的结构化信息、快速变化的外部情报，以及按顺位互相影响的球队决策。如果把三类问题混在一个模型里，预测结果会难以解释，也很难回测和排查错误。因此本项目采用三层架构，把数据、情报和最终模拟分开处理。
+
+| 层级 | 解决的问题 | 主要输入 | 主要输出 |
+| --- | --- | --- | --- |
+| 第一层：基础信息层 | 建立不依赖新闻舆论的稳定 baseline | 球员基础资料、球队需求、选秀顺位、历史结果 | `talent_score`、`need_fit_score`、baseline 预测和 2025 回测 |
+| 第二层：动态分析层 | 把 mock draft、试训、伤病、记者消息、交易传闻转成可计算信号 | 外部网页、新闻、big board、论坛情绪、手动导入文本 | `consensus_score`、`intel_score`、风险信号和证据记录 |
+| 第三层：整合输出层 | 模拟真实选秀中每个顺位的连锁选择 | 第一层分数、第二层情报、球队画像、BPA/Fit 权重 | 1-30 顺位预测、备选球员、置信度和简短理由 |
+
+这样拆分有几个好处：
+
+- 可回测：第一层可以单独用 2025 数据验证，避免动态新闻和选秀后信息污染 baseline。
+- 可解释：每个预测可以拆成基础天赋、球队适配、外部共识、情报修正和风险扣分。
+- 可迭代：先跑通第一层，再逐步加入第二层情报和第三层链式模拟，不需要一开始构建复杂系统。
+- 可复核：第二层保留原文证据和来源，方便人工确认 AI 抽取结果是否可靠。
+- 贴近真实选秀：第三层按顺位链式选择，能体现球员被提前选走、滑落、交易扰动带来的连锁变化。
 
 ## 第一层为何不用机器学习或深度学习
 
@@ -127,7 +150,7 @@ AI 工具（例如 Claude、GPT-5.5）主要放在第二层动态分析层，用
 
 | 环节 | 主要负责方 | 说明 |
 | --- | --- | --- |
-| 爬取 / 导入原始资料 | 普通代码 | 抓取或上传 mock draft、big board、新闻、记者消息、试训名单、伤病信息和交易传闻 |
+| 爬取 / 导入原始资料 | 普通代码 | 抓取或上传 mock draft、big board、新闻、记者消息、试训名单、伤病信息、交易传闻和预测市场信号 |
 | 轻量 RAG / Evidence Store | 普通代码 + Embedding 可选 | 保存原文、URL、日期、来源权重和文本片段，按球员、球队、日期、来源检索相关证据，供 AI 抽取时使用 |
 | 文本理解 / 情报抽取 | Claude / GPT-5.5 | 从文章、网页或手动粘贴文本中抽取球员、球队、事件类型、信号强度和证据摘要 |
 | 数据校验 / 清洗 / 去重 | 普通代码 | 标准化球员名、球队名、日期、来源，检查重复记录和不合法字段 |
@@ -150,6 +173,7 @@ date,source,type,player,team,signal,confidence,url
 - `team_interest`：球队兴趣
 - `trade_rumor`：交易传闻或签位变动信号
 - `reporter_signal`：可靠记者的倾向性判断
+- `market_signal`：Kalshi Hoops 等预测市场或赔率信号，作为外部预期参考
 - `forum_sentiment`：论坛或社交媒体情绪，低权重使用
 
 Web Agent 对这一层应提供的能力：
